@@ -25,7 +25,7 @@ def hello():
         print("...")
     print("network identified")
     print("connecting to ", name)
-    # os.system('iwconfig ' + interface + ' essid ' + name + ' key ' + password)
+    os.system('iwconfig ' + interface + ' essid ' + name + ' key ' + password)
     time.sleep(5)
     print("connection successful")
     print("starting data streaming")
@@ -38,13 +38,13 @@ def start_sse_client():
     while True:
         print("test sse connection")
         time.sleep(1)
-    # sse = SSEClient(local_url)
-    # for response in sse:
-    #     df = pd.read_json(response.data)
-    #     self.save_sensor_data(df)
-    #     if "readings" in df.columns:
-    #         readings_array = str(df["readings"][0])
-    #         print(readings_array)
+    sse = SSEClient(local_url)
+    for response in sse:
+        df = pd.read_json(response.data)
+        self.save_sensor_data(df)
+        if "readings" in df.columns:
+            readings_array = str(df["readings"][0])
+            print(readings_array)
 
 
 if __name__ == "__main__":
